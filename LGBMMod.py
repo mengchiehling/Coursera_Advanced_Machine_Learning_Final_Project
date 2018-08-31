@@ -1,7 +1,28 @@
-from Regression import *
+from lightgbm import LGBMRegressor
 import pandas as pd
 import numpy as np
 from datetime import datetime
+from sklearn.model_selection import ShuffleSplit, GridSearchCV
+from sklearn.externals import joblib
+
+def Cross_Validation(model, X, y, params, n_splits=5, test_size=0.2, random_state=42, scoring='neg_mean_squared_error', output_model_name="models/myModel"):
+
+    cv = ShuffleSplit(n_splits=n_splits, test_size=test_size, random_state=random_state)
+    regression_cv = GridSearchCV(model, param_grid=params, cv=cv, scoring=scoring)
+
+    regression_cv.fit(X, y)
+
+    print(regression_cv.best_score_)
+    print(regression_cv.best_params_)
+
+    joblib.dump(regression_cv, output_model_name, protocol=2)
+
+def LGBMRegressor_Fitting(X, y, params, scoring='neg_mean_squared_error', output_model_name='models/LGBMRegressor'):
+
+    regressor = LGBMRegressor(metric='l2_regression')
+
+    Cross_Validation(regressor, X, y, params, n_splits=5, test_size=0.2, random_state=42, scoring=scoring,
+                     output_model_name=output_model_name)
 
 if __name__ == "__main__":
     
