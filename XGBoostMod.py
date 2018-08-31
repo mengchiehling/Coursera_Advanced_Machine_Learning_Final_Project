@@ -37,7 +37,7 @@ if __name__ == "__main__":
     
     period = time_end - time_begin
     
-    print period
+    print(period)
     
     regressor = joblib.load(model_name)
     
