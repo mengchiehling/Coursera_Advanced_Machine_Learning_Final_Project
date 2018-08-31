@@ -9,7 +9,7 @@ from sklearn.externals import joblib
 def Cross_Validation(model, X, y, params, n_splits=5, test_size=0.2, random_state=42, scoring='neg_mean_squared_error', output_model_name="models/myModel"):
 
     cv = ShuffleSplit(n_splits=n_splits, test_size=test_size, random_state=random_state)
-    regression_cv = GridSearchCV(model, param_grid=params, cv=cv, scoring=scoring)
+    regression_cv = GridSearchCV(model, param_grid=params, cv=cv, scoring=scoring, verbose=2)
 
     regression_cv.fit(X, y)
 
