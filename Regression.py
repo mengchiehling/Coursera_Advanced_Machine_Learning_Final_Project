@@ -16,7 +16,7 @@ def Cross_Validation(model, X, y, params, n_splits=5, test_size=0.2, random_stat
     print(regression_cv.best_score_)
     print(regression_cv.best_params_)
 
-    joblib.dump(regression_cv, output_model_name)
+    joblib.dump(regression_cv, output_model_name, protocol=2)
 
 def RandomForestRegressor_Fitting(X, y, params, scoring='neg_mean_squared_error', output_model_name='models/RandomForestRegressor'):
 
