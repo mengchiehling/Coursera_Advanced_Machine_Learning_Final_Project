@@ -49,7 +49,7 @@ def GradientBoostingRegressor_Fitting(X, y, params, scoring='neg_mean_squared_er
 
 def XGBRegressor_Fitting(X, y, params, scoring='neg_mean_squared_error', output_model_name='models/XGBRegressor'):
 
-    regressor = XGBRegressor()
+    regressor = XGBRegressor(tree_method='gpu_hist')
 
     Cross_Validation(regressor, X, y, params, n_splits=5, test_size=0.2, random_state=42, scoring=scoring,
                      output_model_name=output_model_name)
