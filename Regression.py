@@ -3,6 +3,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import ElasticNet
 from lightgbm import LGBMRegressor
 from xgboost import XGBRegressor
+from sklearn.svm import SVR
 from sklearn.model_selection import ShuffleSplit, GridSearchCV
 from sklearn.externals import joblib
 
@@ -71,6 +72,13 @@ def ElasticNet_Fitting(X, y, params, scoring='neg_mean_squared_error', output_mo
 def LGBMRegressor_Fitting(X, y, params, scoring='neg_mean_squared_error', output_model_name='models/LGBMRegressor'):
 
     regressor = LGBMRegressor(metric='l2_regression')
+
+    Cross_Validation(regressor, X, y, params, n_splits=5, test_size=0.2, random_state=42, scoring=scoring,
+                     output_model_name=output_model_name)
+
+def SVR_Fitting(X, y, params, scoring='neg_mean_squared_error', output_model_name='models/SVR'):
+
+    regressor = SVR(kernel='poly', degree=3)
 
     Cross_Validation(regressor, X, y, params, n_splits=5, test_size=0.2, random_state=42, scoring=scoring,
                      output_model_name=output_model_name)
