@@ -50,6 +50,8 @@ if __name__ == '__main__':
     model_name = 'models/RandomForestRegressor'
     key = "RF"
 
+    # -24.797645044565634
+    # {'n_estimators': 400, 'max_depth': 15, 'min_samples_leaf': 5}
 
     """
     Start loading the data
@@ -64,8 +66,13 @@ if __name__ == '__main__':
     """
 
     n_estimators = [400]
-    max_depth = np.arange(5, 16, 5)
-    min_samples_leaf = np.arange(2, 19, 3)
+    max_depth = [15] #np.arange(5, 16, 5)
+    min_samples_leaf = [5] #np.arange(2, 19, 3)
+
+    # Drop 'item_price_inv'
+
+    X_train.drop(labels=['item_price_inv'], axis=1, inplace=True)
+    X_test.drop(labels=['item_price_inv'], axis=1, inplace=True)
 
     params = {'n_estimators': n_estimators,
               'max_depth': max_depth,
