@@ -34,7 +34,7 @@ def Running_prediction(X_train, X_test, Y_train, model_name, key_word):
     prediction_2 = regressor.predict(X_test.drop(labels=['ID'], axis=1)).reshape(-1, 1)
 
     r2 = np.round(r2_score(Y_train, prediction_1), 4)
-    print('r2_score = {}'.format(r2_score(r2)))
+    print('r2_score = {}'.format(r2))
 
     prediction_1 = pd.DataFrame(data=prediction_1, columns=[key_word])
     prediction_1.to_csv("predictions_training/{}.csv".format(key_word), index=False)
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     model_name = 'models/RandomForestRegressor'
     key = "RF"
 
-    # -24.797645044565634
+    # -24.797595364626634
     # {'n_estimators': 400, 'max_depth': 15, 'min_samples_leaf': 5}
 
     """
