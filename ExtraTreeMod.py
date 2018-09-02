@@ -34,7 +34,8 @@ def Running_prediction(X_train, X_test, Y_train, model_name, key_word):
     prediction_2 = regressor.predict(X_test.drop(labels=['ID'], axis=1)).reshape(-1, 1)
 
     r2 = np.round(r2_score(Y_train, prediction_1), 4)
-    print('r2_score = {}'.format(r2_score(r2)))
+    print('r2_score = {}'.format(r2))
+
 
     prediction_1 = pd.DataFrame(data=prediction_1, columns=[key_word])
     prediction_1.to_csv("predictions_training/{}.csv".format(key_word), index=False)
@@ -50,6 +51,8 @@ if __name__ == '__main__':
     model_name = 'models/ExtraTreesRegressor'
     key = "ET"
 
+    # -24.2184
+    # {'n_estimators': 400, 'max_depth': 20, 'min_samples_leaf': 2}
 
     """
     Start loading the data
@@ -64,16 +67,21 @@ if __name__ == '__main__':
     """
 
     n_estimators = [400]
-    max_depth = np.arange(5, 16, 5)
-    min_samples_leaf = np.arange(2, 19, 3)
+    max_depth = [20] #np.arange(5, 21, 5)
+    min_samples_leaf = [2] #np.arange(2, 19, 3)
 
     params = {'n_estimators': n_estimators,
               'max_depth': max_depth,
               'min_samples_leaf': min_samples_leaf}
 
+    # Drop 'item_price_inv'
+
+    X_train.drop(labels=['item_price_inv'], axis=1, inplace=True)
+    X_test.drop(labels=['item_price_inv'], axis=1, inplace=True)
+
     ExtraTreesRegressor_Fitting(X_train, Y_train, params,
                          output_model_name=model_name)
-
+    #
     Running_prediction(X_train, X_test, Y_train, model_name, key)
 
     Running_time = datetime.now() - time_begin
