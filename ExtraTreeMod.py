@@ -82,7 +82,7 @@ if __name__ == '__main__':
     ExtraTreesRegressor_Fitting(X_train, Y_train, params,
                          output_model_name=model_name)
     #
-    Running_prediction(X_train, X_test, Y_train, model_name, key)
+    # Running_prediction(X_train, X_test, Y_train, model_name, key)
 
     Running_time = datetime.now() - time_begin
 
