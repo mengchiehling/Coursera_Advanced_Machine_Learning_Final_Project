@@ -9,7 +9,10 @@ if __name__ == "__main__":
     
     model_name = "models/KNNRegressor"
     key = "KNN"
-    
+
+    # -28.0667185665
+    # {'n_neighbors': 10, 'weights': 'distance'}
+
     n_neighbors = np.arange(5, 31, 5).astype(int)
     weights = ['uniform', 'distance']
     

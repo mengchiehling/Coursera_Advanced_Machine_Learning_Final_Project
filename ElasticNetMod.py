@@ -13,8 +13,12 @@ if __name__ == "__main__":
     alpha = np.logspace(-1, 2, 11)
     l1_ratio = np.linspace(0, 1, 11)
 
+    # -36.5387269502
+    # {'alpha': 0.10000000000000001, 'l1_ratio': 0.0}
+
     params = {'alpha': alpha,
-              'l1_ratio': l1_ratio}
+              'l1_ratio': l1_ratio
+              }
     
     X_train = pd.read_csv("X_train.csv.gz")
     X_test = pd.read_csv("X_test.csv.gz")

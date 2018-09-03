@@ -11,6 +11,7 @@ if __name__ == "__main__":
     key = "SVR_poly"
     
     C = np.linspace(0, 1000, 51)
+    C[0] = 1
     epsilon = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
     
     
